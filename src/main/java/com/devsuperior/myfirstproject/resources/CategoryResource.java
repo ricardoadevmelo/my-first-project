@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping(value = "/categories")
 public class CategoryResource {
 
-
     @Autowired
     CategoryRepository categoryRepository;
 

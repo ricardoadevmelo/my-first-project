@@ -2,6 +2,7 @@ package com.devsuperior.myfirstproject.resources;
 
 import com.devsuperior.myfirstproject.entities.Product;
 import com.devsuperior.myfirstproject.repositories.ProductRepository;
+import com.devsuperior.myfirstproject.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +16,12 @@ import java.util.List;
 @RequestMapping(value = "/products")
 public class ProductResource {
 
-
     @Autowired
-    ProductRepository ProductRepository;
-
-    @GetMapping
-    public ResponseEntity<List<Product>> findAll(){
-        List<Product> ProductList = ProductRepository.findAll();
-        return ResponseEntity.ok().body(ProductList);
-    }
+    private ProductService productService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
-		Product Product = ProductRepository.findById(id).get();
+		Product Product = productService.findById(id);
         return ResponseEntity.ok().body(Product);
     }
 }
